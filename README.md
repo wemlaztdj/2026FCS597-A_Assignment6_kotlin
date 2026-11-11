@@ -1,5 +1,6 @@
 # [DRAFT]high-fidelity prototype of a budgeting mobile app
 ## Overview
+Budget Garden
 This is a high-fidelity prototype of a budgeting web app designed for college students. It uses a garden metaphor to make budgeting easier to understand and more engaging.
 ## How to Run the Prototype
 Download or clone this GitHub repository.
