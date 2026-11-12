@@ -36,4 +36,16 @@ data class BudgetTransaction(
     val amount: Long,              // Positive cents; direction is from -> to
     @ColumnInfo(name = "post_date") val postDate: Long,
     val memo: String = ""
-)
+) {
+    init {
+        require(fromBudgetId != null || toBudgetId != null) {
+            "Source and destination cannot both be null"
+        }
+
+        require(fromBudgetId == null ||
+                toBudgetId == null ||
+                fromBudgetId != toBudgetId) {
+            "Source and destination cannot be the same"
+        }
+    }
+}
