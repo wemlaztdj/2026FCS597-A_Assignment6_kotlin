@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:gravity="center_horizontal">
+        <TextView style="@style/GardenTitle" android:text="@string/next_water_delivery" />
+        <TextView style="@style/GardenBody" android:id="@+id/water_delivery_date_text" android:text="@string/water_date" android:layout_marginTop="24dp" />
+        <ImageView android:layout_width="match_parent" android:layout_height="180dp" android:scaleType="fitCenter" android:layout_marginTop="16dp" android:src="@drawable/water_tank" android:contentDescription="@string/water_tank_description" />
+        <ImageView android:layout_width="match_parent" android:layout_height="130dp" android:scaleType="fitCenter" android:layout_marginTop="12dp" android:src="@drawable/water_pallet" android:contentDescription="@string/water_pallet_description" />
+    </LinearLayout>
+</ScrollView>
+
+
+
+

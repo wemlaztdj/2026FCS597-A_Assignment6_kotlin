@@ -1,19 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main" android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical" android:background="#F6F8F1">
+    <FrameLayout android:id="@+id/page_container" android:layout_width="match_parent"
+        android:layout_height="0dp" android:layout_weight="1" />
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="horizontal" android:baselineAligned="false" android:padding="6dp" android:background="#DDE8D7">
+        <LinearLayout
+            android:id="@+id/take_out_button"
+            android:layout_width="0dp"
+            android:layout_height="88dp"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="3dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="6dp"
+            android:background="@drawable/navigation_background"
+            android:foreground="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:contentDescription="@string/take_out">
+            <TextView
+                android:id="@+id/take_out_label"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:gravity="center"
+                android:text="@string/take_out"
+                android:textColor="#24452C"
+                android:textSize="12sp"
+                android:maxLines="1"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="9sp"
+                android:autoSizeMaxTextSize="12sp"
+                android:autoSizeStepGranularity="1sp"
+                android:importantForAccessibility="no" />
+            <ImageView
+                android:layout_width="52dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="3dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/water_can"
+                android:importantForAccessibility="no" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/home_button"
+            android:layout_width="0dp"
+            android:layout_height="88dp"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="3dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="6dp"
+            android:background="@drawable/navigation_background"
+            android:foreground="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:contentDescription="@string/home">
+            <TextView
+                android:id="@+id/home_label"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:gravity="center"
+                android:text="@string/home"
+                android:textColor="#24452C"
+                android:textSize="12sp"
+                android:maxLines="1"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="9sp"
+                android:autoSizeMaxTextSize="12sp"
+                android:autoSizeStepGranularity="1sp"
+                android:importantForAccessibility="no" />
+            <ImageView
+                android:layout_width="52dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="3dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/home"
+                android:importantForAccessibility="no" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/garden_button"
+            android:layout_width="0dp"
+            android:layout_height="88dp"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="3dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="6dp"
+            android:background="@drawable/navigation_background"
+            android:foreground="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:contentDescription="@string/full_garden">
+            <TextView
+                android:id="@+id/garden_label"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:gravity="center"
+                android:text="@string/full_garden"
+                android:textColor="#24452C"
+                android:textSize="12sp"
+                android:maxLines="1"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="9sp"
+                android:autoSizeMaxTextSize="12sp"
+                android:autoSizeStepGranularity="1sp"
+                android:importantForAccessibility="no" />
+            <ImageView
+                android:layout_width="52dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="3dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/pink_flower"
+                android:importantForAccessibility="no" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
