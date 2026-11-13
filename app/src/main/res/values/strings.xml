@@ -1,3 +1,30 @@
 <resources>
-    <string name="app_name">budgetgarden</string>
+    <string name="app_name">Budget Garden</string>
+    <string name="home">Home</string>
+    <string name="take_out">Take Out Funds</string>
+    <string name="full_garden">Full Garden</string>
+    <string name="fund_details">Fund Details</string>
+    <string name="overall_funds">Overall funds</string>
+    <string name="sample_total">$1,000.00</string>
+    <string name="sample_leftover">$250.00</string>
+    <string name="leftover">Leftover funds</string>
+    <string name="view_details">View Fund Details</string>
+    <string name="water_date">Next water delivery: Not scheduled</string>
+    <string name="tree_description">A growing tree representing your savings</string>
+    <string name="flowers">🌻   🌷   🌱   🌺</string>
+    <string name="sample_note">Sample balances for your app prototype</string>
+    <string name="withdraw_description">Available funds: $250.00</string>
+    <string name="garden_description">Each flower represents a savings goal.</string>
+    <string name="details_description">Overall funds: $1,000.00\nLeftover funds: $250.00</string>
+    <string name="back_home">Back to Home</string>
+    <string name="next_water_delivery">Next Water Delivery</string>
+    <string name="yellow_flower_description">Yellow flower in a pot</string>
+    <string name="pink_flower_description">Pink flower in a pot</string>
+    <string name="orange_flower_description">Orange flower in a pot</string>
+    <string name="red_flower_description">Red flower in a pot</string>
+    <string name="budding_red_flower_description">Budding red flower in a pot</string>
+    <string name="water_jug_description">Water jug representing leftover funds</string>
+    <string name="water_tank_description">Water delivery tank</string>
+    <string name="water_pallet_description">Water delivery pallet</string>
+    <string name="available_funds_format">Available funds: %1$s</string>
 </resources>
