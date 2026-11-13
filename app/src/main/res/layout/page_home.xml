@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="match_parent" android:fillViewport="true">
+  <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center_horizontal" android:paddingHorizontal="12dp" android:paddingVertical="24dp">
+    <TextView style="@style/GardenTitle" android:text="@string/app_name" />
+    <TextView style="@style/GardenBody" android:text="@string/overall_funds" />
+    <TextView style="@style/GardenTitle" android:text="@string/sample_total" android:id="@+id/overall_funds_text" />
+    <ImageView android:layout_width="match_parent" android:layout_height="220dp" android:scaleType="fitCenter" android:src="@drawable/tree" android:contentDescription="@string/tree_description" />
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:baselineAligned="false" android:layout_marginTop="12dp" android:id="@+id/home_garden_container">
+      <ImageView android:layout_width="0dp" android:layout_height="80dp" android:layout_weight="1" android:padding="4dp" android:scaleType="fitCenter" android:src="@drawable/yellow_flower" android:contentDescription="@string/yellow_flower_description" />
+      <ImageView android:layout_width="0dp" android:layout_height="80dp" android:layout_weight="1" android:padding="4dp" android:scaleType="fitCenter" android:src="@drawable/pink_flower" android:contentDescription="@string/pink_flower_description" />
+      <ImageView android:layout_width="0dp" android:layout_height="80dp" android:layout_weight="1" android:padding="4dp" android:scaleType="fitCenter" android:src="@drawable/budding_red_flower" android:contentDescription="@string/budding_red_flower_description" />
+      <ImageView android:layout_width="0dp" android:layout_height="80dp" android:layout_weight="1" android:padding="4dp" android:scaleType="fitCenter" android:src="@drawable/red_flower" android:contentDescription="@string/red_flower_description" />
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:baselineAligned="false" android:layout_marginTop="12dp">
+      <LinearLayout android:id="@+id/water_delivery_button" android:layout_width="0dp" android:layout_height="96dp" android:layout_weight="1" android:padding="6dp" android:orientation="vertical" android:gravity="center" android:background="@drawable/navigation_background" android:foreground="?attr/selectableItemBackground" android:clickable="true" android:focusable="true" android:contentDescription="@string/next_water_delivery">
+        <TextView android:layout_width="match_parent" android:layout_height="22dp" android:gravity="center" android:text="@string/next_water_delivery" android:textColor="#24452C" android:textSize="12sp" android:maxLines="1" android:autoSizeTextType="uniform" android:autoSizeMinTextSize="9sp" android:autoSizeMaxTextSize="12sp" android:autoSizeStepGranularity="1sp" android:importantForAccessibility="no" />
+        <ImageView android:layout_width="72dp" android:layout_height="56dp" android:layout_marginTop="4dp" android:scaleType="fitCenter" android:src="@drawable/truck" android:importantForAccessibility="no" />
+      </LinearLayout>
+      <Space android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="0.5" />
+      <LinearLayout android:id="@+id/details_button" android:layout_width="0dp" android:layout_height="96dp" android:layout_weight="1" android:padding="6dp" android:orientation="vertical" android:gravity="center" android:background="@drawable/navigation_background" android:foreground="?attr/selectableItemBackground" android:clickable="true" android:focusable="true" android:contentDescription="@string/view_details">
+        <TextView android:layout_width="match_parent" android:layout_height="22dp" android:gravity="center" android:text="@string/view_details" android:textColor="#24452C" android:textSize="12sp" android:maxLines="1" android:autoSizeTextType="uniform" android:autoSizeMinTextSize="9sp" android:autoSizeMaxTextSize="12sp" android:autoSizeStepGranularity="1sp" android:importantForAccessibility="no" />
+        <ImageView android:layout_width="72dp" android:layout_height="56dp" android:layout_marginTop="4dp" android:scaleType="fitCenter" android:src="@drawable/clipboard" android:importantForAccessibility="no" />
+      </LinearLayout>
+    </LinearLayout>
+    <TextView style="@style/GardenBody" android:text="@string/leftover" android:layout_marginTop="16dp" />
+    <ImageView android:layout_width="110dp" android:layout_height="115dp" android:scaleType="fitCenter" android:src="@drawable/water_jug" android:contentDescription="@string/water_jug_description" />
+    <TextView style="@style/GardenTitle" android:text="@string/sample_leftover" android:id="@+id/leftover_funds_text" />
+    <TextView style="@style/GardenBody" android:text="@string/sample_note" />
+  </LinearLayout>
+</ScrollView>

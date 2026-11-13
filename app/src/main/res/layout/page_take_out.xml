@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="match_parent" android:fillViewport="true">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="24dp" android:gravity="center_horizontal">
+        <TextView style="@style/GardenTitle" android:text="@string/take_out" />
+        
+        <TextView style="@style/GardenBody" android:id="@+id/available_funds_text" android:text="@string/withdraw_description" android:layout_marginTop="24dp" />
+    </LinearLayout>
+</ScrollView>
+
+
