@@ -7,6 +7,7 @@ import android.widget.EditText
 import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import edu.stevens.cs597.budgetgarden.data.AppDatabase
@@ -46,6 +47,12 @@ class DatabaseTestActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_database_test)
+        findViewById<Button>(R.id.openCreateGoalButton)
+            .setOnClickListener {
+                startActivity(
+                    Intent(this, CreatePlantGoalActivity::class.java)
+                )
+            }
 
         database = AppDatabase.get(applicationContext)
         repository = BudgetRepository(database)

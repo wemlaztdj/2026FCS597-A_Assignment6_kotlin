@@ -199,5 +199,11 @@
             android:textColor="#20382A"
             android:textSize="14sp" />
 
+        <Button
+            android:id="@+id/openCreateGoalButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Create a savings goal" />
+
     </LinearLayout>
 </ScrollView>
