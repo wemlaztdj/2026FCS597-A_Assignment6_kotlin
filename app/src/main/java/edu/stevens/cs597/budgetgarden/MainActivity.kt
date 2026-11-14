@@ -4,16 +4,25 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.TextView
-import android.widget.Button
 import android.widget.FrameLayout
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancel
 
 class MainActivity : AppCompatActivity() {
     private var currentPage = "home"
+    private val gardenApp by lazy {
+        application as GardenBudgetApp
+    }
+
+    private var pageScope: CoroutineScope? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,19 +45,33 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showPage(page: String) {
+        pageScope?.cancel()
+        val scope = CoroutineScope(
+            lifecycleScope.coroutineContext +
+                SupervisorJob(lifecycleScope.coroutineContext[Job])
+        )
+        pageScope = scope
         currentPage = page
         val layout = when (page) {
             "withdraw" -> R.layout.page_take_out
             "garden" -> R.layout.page_garden
             "details" -> R.layout.page_details
             "water" -> R.layout.page_water_delivery
+            "create_goal" -> R.layout.page_create_goal
             else -> R.layout.page_home
         }
         val container = findViewById<FrameLayout>(R.id.page_container)
         container.removeAllViews()
-        LayoutInflater.from(this).inflate(layout, container, true)
-        if (page == "home") HomePage(container).bind(::showPage)
-        // Load fresh database values for the other pages here after integration.
+        val pageView = LayoutInflater.from(this).inflate(layout, container, false)
+        container.addView(pageView)
+        when (page) {
+            "home" -> HomePage(pageView, gardenApp, scope).bind(::showPage)
+            "create_goal" -> CreatePlantGoalPage(
+                pageView,
+                gardenApp,
+                scope
+            ).bind(::showPage)
+        }
         val selectedId = when (page) {
             "withdraw" -> R.id.take_out_button
             "garden" -> R.id.garden_button

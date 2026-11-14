@@ -11,6 +11,12 @@
       <ImageView android:layout_width="0dp" android:layout_height="80dp" android:layout_weight="1" android:padding="4dp" android:scaleType="fitCenter" android:src="@drawable/budding_red_flower" android:contentDescription="@string/budding_red_flower_description" />
       <ImageView android:layout_width="0dp" android:layout_height="80dp" android:layout_weight="1" android:padding="4dp" android:scaleType="fitCenter" android:src="@drawable/red_flower" android:contentDescription="@string/red_flower_description" />
     </LinearLayout>
+    <Button
+        android:id="@+id/create_goal_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/create_savings_goal" />
     <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:baselineAligned="false" android:layout_marginTop="12dp">
       <LinearLayout android:id="@+id/water_delivery_button" android:layout_width="0dp" android:layout_height="96dp" android:layout_weight="1" android:padding="6dp" android:orientation="vertical" android:gravity="center" android:background="@drawable/navigation_background" android:foreground="?attr/selectableItemBackground" android:clickable="true" android:focusable="true" android:contentDescription="@string/next_water_delivery">
         <TextView android:layout_width="match_parent" android:layout_height="22dp" android:gravity="center" android:text="@string/next_water_delivery" android:textColor="#24452C" android:textSize="12sp" android:maxLines="1" android:autoSizeTextType="uniform" android:autoSizeMinTextSize="9sp" android:autoSizeMaxTextSize="12sp" android:autoSizeStepGranularity="1sp" android:importantForAccessibility="no" />

@@ -12,7 +12,7 @@
     <string name="water_date">Next water delivery: Not scheduled</string>
     <string name="tree_description">A growing tree representing your savings</string>
     <string name="flowers">🌻   🌷   🌱   🌺</string>
-    <string name="sample_note">Sample balances for your app prototype</string>
+    <string name="sample_note">Plant preview is a sample.</string>
     <string name="withdraw_description">Available funds: $250.00</string>
     <string name="garden_description">Each flower represents a savings goal.</string>
     <string name="details_description">Overall funds: $1,000.00\nLeftover funds: $250.00</string>
@@ -27,4 +27,21 @@
     <string name="water_tank_description">Water delivery tank</string>
     <string name="water_pallet_description">Water delivery pallet</string>
     <string name="available_funds_format">Available funds: %1$s</string>
+    <string name="create_savings_goal">Create a savings goal</string>
+    <string name="cancel_goal_creation">Cancel</string>
+    <string name="goal_name_hint">Goal name</string>
+    <string name="goal_amount_hint">Target amount in dollars</string>
+    <string name="goal_date_prompt">Choose target date</string>
+    <string name="goal_description_hint">Description (optional)</string>
+    <string name="save_goal">Save goal</string>
+    <string name="saving_goal">Saving…</string>
+    <string name="goal_created">Savings goal created</string>
+    <string name="goal_save_failed">Could not save your goal. Please try again.</string>
+    <string name="goal_name_required">Enter a goal name</string>
+    <string name="goal_amount_invalid">Enter an amount greater than zero, with at most two decimal places</string>
+    <string name="goal_date_required">Choose a target date</string>
+    <string name="goal_date_past">Choose today or a future date</string>
+    <string name="balance_loading">Loading…</string>
+    <string name="balance_unavailable">Unavailable</string>
+    <string name="home_balances_failed">Could not load your balances. Reopen Home to try again.</string>
 </resources>

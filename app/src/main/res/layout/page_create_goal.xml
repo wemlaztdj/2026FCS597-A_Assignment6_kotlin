@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/create_savings_goal"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/goal_name_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:minHeight="48dp"
+            android:hint="@string/goal_name_hint"
+            android:inputType="textCapSentences"
+            android:maxLines="1" />
+
+        <EditText
+            android:id="@+id/goal_amount_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:hint="@string/goal_amount_hint"
+            android:inputType="numberDecimal"
+            android:maxLines="1" />
+
+        <Button
+            android:id="@+id/goal_date_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/goal_date_prompt" />
+
+        <EditText
+            android:id="@+id/goal_description_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="top"
+            android:hint="@string/goal_description_hint"
+            android:inputType="textCapSentences|textMultiLine"
+            android:minLines="3" />
+
+        <Button
+            android:id="@+id/save_goal_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/save_goal" />
+
+        <Button
+            android:id="@+id/cancel_goal_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cancel_goal_creation" />
+
+    </LinearLayout>
+</ScrollView>
