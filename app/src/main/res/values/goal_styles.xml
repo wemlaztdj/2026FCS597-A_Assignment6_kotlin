@@ -1,0 +1,95 @@
+<resources>
+    <!-- Scoped to the goal pages, which share the existing cream and green palette. -->
+    <style name="ThemeOverlay.Budgetgarden.Goal" parent="ThemeOverlay.Material3.Light">
+        <item name="colorPrimary">@color/garden_goal_accent</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimaryContainer">@color/garden_goal_selected</item>
+        <item name="colorOnPrimaryContainer">@color/garden_goal_heading</item>
+        <item name="colorSurface">@color/garden_goal_surface</item>
+        <item name="colorOnSurface">@color/garden_goal_heading</item>
+        <item name="colorOnSurfaceVariant">@color/garden_goal_body</item>
+        <item name="colorOutline">@color/garden_goal_accent</item>
+        <item name="colorAccent">@color/garden_goal_accent</item>
+        <item name="colorControlActivated">@color/garden_goal_accent</item>
+        <item name="android:colorAccent">@color/garden_goal_accent</item>
+        <item name="android:colorBackground">@color/garden_goal_background</item>
+        <item name="android:textColorPrimary">@color/garden_goal_heading</item>
+        <item name="android:textColorSecondary">@color/garden_goal_body</item>
+    </style>
+
+    <style name="GardenGoalSubtitle" parent="GardenBody">
+        <item name="android:padding">0dp</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:lineSpacingExtra">3dp</item>
+    </style>
+
+    <style name="GardenGoalFieldLabel">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:layout_marginBottom">6dp</item>
+        <item name="android:textColor">@color/garden_goal_heading</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="GardenGoalTextInput" parent="Widget.AppCompat.EditText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">56dp</item>
+        <item name="android:background">@drawable/garden_goal_input_background</item>
+        <item name="android:backgroundTint">@null</item>
+        <item name="backgroundTint">@null</item>
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingEnd">16dp</item>
+        <item name="android:paddingTop">14dp</item>
+        <item name="android:paddingBottom">14dp</item>
+        <item name="android:textColor">@color/garden_goal_text</item>
+        <item name="android:textColorHint">@color/garden_goal_hint</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="GardenGoalButton" parent="Widget.Material3.Button">
+        <item name="android:minHeight">52dp</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingEnd">16dp</item>
+        <item name="android:paddingTop">14dp</item>
+        <item name="android:paddingBottom">14dp</item>
+        <item name="android:insetLeft">0dp</item>
+        <item name="android:insetRight">0dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:textColor">@color/garden_goal_text</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:stateListAnimator">@null</item>
+        <item name="backgroundTint">@color/garden_goal_primary_button</item>
+        <item name="cornerRadius">12dp</item>
+        <item name="strokeColor">@color/garden_goal_accent</item>
+        <item name="strokeWidth">2dp</item>
+        <item name="rippleColor">@color/garden_goal_ripple</item>
+        <item name="elevation">0dp</item>
+    </style>
+
+    <style name="GardenGoalSecondaryButton" parent="GardenGoalButton">
+        <item name="backgroundTint">@color/garden_goal_secondary_button</item>
+        <item name="strokeWidth">1dp</item>
+    </style>
+
+    <style name="GardenGoalDateButton" parent="GardenGoalSecondaryButton">
+        <item name="android:minHeight">56dp</item>
+        <item name="android:gravity">start|center_vertical</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <style name="GardenGoalPlantButton" parent="GardenGoalSecondaryButton">
+        <item name="android:paddingStart">0dp</item>
+        <item name="android:paddingEnd">0dp</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+        <item name="android:textSize">28sp</item>
+    </style>
+</resources>

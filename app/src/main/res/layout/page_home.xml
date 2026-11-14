@@ -11,8 +11,9 @@
       <ImageView android:layout_width="0dp" android:layout_height="80dp" android:layout_weight="1" android:padding="4dp" android:scaleType="fitCenter" android:src="@drawable/budding_red_flower" android:contentDescription="@string/budding_red_flower_description" />
       <ImageView android:layout_width="0dp" android:layout_height="80dp" android:layout_weight="1" android:padding="4dp" android:scaleType="fitCenter" android:src="@drawable/red_flower" android:contentDescription="@string/red_flower_description" />
     </LinearLayout>
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/create_goal_button"
+        style="@style/GardenGoalButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"

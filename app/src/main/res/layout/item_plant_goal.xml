@@ -2,10 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    android:background="@drawable/garden_goal_card_background"
     android:baselineAligned="false"
     android:gravity="center_vertical"
     android:orientation="horizontal"
-    android:padding="12dp">
+    android:padding="16dp">
 
     <ImageView
         android:id="@+id/goal_plant_image"
@@ -27,6 +29,7 @@
             android:id="@+id/garden_goal_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/garden_goal_heading"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -34,6 +37,9 @@
             android:id="@+id/garden_goal_amounts"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp" />
+            android:layout_marginTop="6dp"
+            android:lineSpacingExtra="3dp"
+            android:textColor="@color/garden_goal_body"
+            android:textSize="16sp" />
     </LinearLayout>
 </LinearLayout>

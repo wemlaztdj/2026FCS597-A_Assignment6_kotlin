@@ -2,20 +2,29 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:background="@color/garden_goal_background"
+    android:fillViewport="true"
+    android:theme="@style/ThemeOverlay.Budgetgarden.Goal">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="24dp">
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="24dp">
 
         <TextView
             style="@style/GardenTitle"
+            android:accessibilityHeading="true"
             android:text="@string/your_garden" />
 
-        <Button
+        <TextView
+            style="@style/GardenGoalSubtitle"
+            android:text="@string/garden_description" />
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/garden_create_goal_button"
+            style="@style/GardenGoalButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -24,7 +33,11 @@
         <TextView
             android:id="@+id/garden_status_text"
             style="@style/GardenBody"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/garden_goal_card_background"
+            android:padding="20dp"
+            android:textColor="@color/garden_goal_body"
+            android:textSize="16sp"
             android:text="@string/garden_loading"
             android:accessibilityLiveRegion="polite" />
 
@@ -32,7 +45,7 @@
             android:id="@+id/garden_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="20dp"
             android:orientation="vertical" />
     </LinearLayout>
 </ScrollView>

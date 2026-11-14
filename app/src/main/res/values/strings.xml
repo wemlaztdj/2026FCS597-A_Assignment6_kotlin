@@ -14,7 +14,7 @@
     <string name="flowers">🌻   🌷   🌱   🌺</string>
     <string name="sample_note">Plant preview is a sample.</string>
     <string name="withdraw_description">Available funds: $250.00</string>
-    <string name="garden_description">Each flower represents a savings goal.</string>
+    <string name="garden_description">Your budgets and savings goals, all in one garden.</string>
     <string name="details_description">Overall funds: $1,000.00\nLeftover funds: $250.00</string>
     <string name="back_home">Back to Home</string>
     <string name="next_water_delivery">Next Water Delivery</string>
@@ -50,5 +50,10 @@
     <string name="garden_loading">Loading your garden…</string>
     <string name="garden_empty">No goals yet. Create your first savings goal.</string>
     <string name="garden_load_failed">Could not load your garden. Please reopen this page to try again.</string>
-    <string name="garden_goal_amounts">Balance: %1$s · Target: %2$s</string>
+    <string name="garden_goal_amounts">Balance: %1$s\nTarget: %2$s</string>
+    <string name="goal_form_description">Choose a target and a plant for your savings goal.</string>
+    <string name="goal_name_placeholder">e.g. A new laptop</string>
+    <string name="goal_amount_placeholder">0.00</string>
+    <string name="goal_description_placeholder">What are you saving for?</string>
+    <string name="goal_target_date_label">Target date</string>
 </resources>

@@ -91,13 +91,13 @@
             android:foreground="?attr/selectableItemBackground"
             android:clickable="true"
             android:focusable="true"
-            android:contentDescription="@string/full_garden">
+            android:contentDescription="@string/your_garden">
             <TextView
                 android:id="@+id/garden_label"
                 android:layout_width="match_parent"
                 android:layout_height="20dp"
                 android:gravity="center"
-                android:text="@string/full_garden"
+                android:text="@string/your_garden"
                 android:textColor="#24452C"
                 android:textSize="12sp"
                 android:maxLines="1"
