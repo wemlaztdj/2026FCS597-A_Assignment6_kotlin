@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.TextView
-import android.widget.Button
+//import android.widget.Button
 import android.widget.FrameLayout
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.enableEdgeToEdge
@@ -42,21 +42,32 @@ class MainActivity : AppCompatActivity() {
         })
         showPage(savedInstanceState?.getString("page") ?: "home")
 
-
+        //update UI number from database
         val overallFundsText = findViewById<TextView>(R.id.overall_funds_text)
+        val leftoverFundsText = findViewById<TextView>(R.id.leftover_funds_text)
         lifecycleScope.launch {
 
             // Wait for the initial wallet setup
             gardenApp.awaitDatabaseReady()
-
+            val asNow = System.currentTimeMillis()
             // Query the total money
-            val totalMoney = gardenApp.dao.totalMoneyAt(
-                System.currentTimeMillis()
-            )
+            val totalMoney = gardenApp.dao.totalMoneyAt(asNow)
             overallFundsText.text = String.format(
                 java.util.Locale.US,
                 "$%.2f",
                 totalMoney / 100.0
+            )
+            val budgets = gardenApp.dao.getBudgets()
+            val wallets = budgets.filter {
+                it.type == "WALLET" && !it.isArchived
+            }
+            val walletBalance = wallets.sumOf {
+                gardenApp.dao.balanceAt(it.id, asNow)
+            }
+            leftoverFundsText.text = String.format(
+                java.util.Locale.US,
+                "$%.2f",
+                walletBalance / 100.0
             )
 
         }

@@ -36,17 +36,10 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1aa8a723-4646-4aae-b179-1f75e75ef667" name="Changes" comment="Database added.">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/edu/stevens/cs597/budgetgarden/GardenBudgetApp.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/edu/stevens/cs597/budgetgarden/examples/DatabaseExampleActivity.kt" afterDir="false" />
+    <list default="true" id="1aa8a723-4646-4aae-b179-1f75e75ef667" name="Changes" comment="Database added. total_money, leftover_money done.">
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/edu/stevens/cs597/budgetgarden/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/edu/stevens/cs597/budgetgarden/MainActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/edu/stevens/cs597/budgetgarden/data/BudgetRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/edu/stevens/cs597/budgetgarden/data/BudgetRepository.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -236,7 +229,9 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Database added." />
-    <option name="LAST_COMMIT_MESSAGE" value="Database added." />
+    <MESSAGE value="Database added. total_money update test done." />
+    <MESSAGE value="Database added. total_money, leftover_money done." />
+    <option name="LAST_COMMIT_MESSAGE" value="Database added. total_money, leftover_money done." />
   </component>
   <component name="play_dynamic_filters_status">
     <option name="appIdToCheckInfo">
