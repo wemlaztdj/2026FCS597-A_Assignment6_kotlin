@@ -51,6 +51,54 @@
             android:inputType="textCapSentences|textMultiLine"
             android:minLines="3" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/choose_plant"
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/previous_plant_button"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:minWidth="0dp"
+                android:padding="0dp"
+                android:contentDescription="@string/previous_plant"
+                android:text="&#x2039;" />
+
+            <ImageView
+                android:id="@+id/plant_preview"
+                android:layout_width="0dp"
+                android:layout_height="140dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/yellow_flower_description"
+                android:scaleType="fitCenter"
+                android:src="@drawable/yellow_flower" />
+
+            <Button
+                android:id="@+id/next_plant_button"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:minWidth="0dp"
+                android:padding="0dp"
+                android:contentDescription="@string/next_plant"
+                android:text="&#x203A;" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/plant_name_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/yellow_flower_description" />
+
         <Button
             android:id="@+id/save_goal_button"
             android:layout_width="match_parent"

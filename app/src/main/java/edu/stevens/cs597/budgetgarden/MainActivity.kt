@@ -68,6 +68,7 @@ class MainActivity : AppCompatActivity() {
         container.addView(pageView)
         when (page) {
             "home" -> HomePage(pageView, gardenApp, scope).bind(::showPage)
+            "garden" -> GardenPage(pageView, gardenApp, scope).bind(::showPage)
             "create_goal" -> CreatePlantGoalPage(
                 pageView,
                 gardenApp,

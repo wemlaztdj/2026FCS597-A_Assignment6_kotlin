@@ -5,6 +5,8 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
@@ -26,15 +28,39 @@ class CreatePlantGoalPage(
         val dateButton = root.findViewById<Button>(R.id.goal_date_button)
         val saveButton = root.findViewById<Button>(R.id.save_goal_button)
         val cancelButton = root.findViewById<Button>(R.id.cancel_goal_button)
+        val previousPlantButton = root.findViewById<Button>(R.id.previous_plant_button)
+        val nextPlantButton = root.findViewById<Button>(R.id.next_plant_button)
+        val plantPreview = root.findViewById<ImageView>(R.id.plant_preview)
+        val plantName = root.findViewById<TextView>(R.id.plant_name_text)
 
         var selectedDate: LocalDate? = null
+        var selectedPlantIndex = 0
         var isSaving = false
+
+        fun showSelectedPlant() {
+            val plant = PlantCatalog.choices[selectedPlantIndex]
+            plantPreview.setImageResource(plant.drawableRes)
+            plantPreview.contentDescription = root.context.getString(plant.labelRes)
+            plantName.setText(plant.labelRes)
+        }
+
+        previousPlantButton.setOnClickListener {
+            selectedPlantIndex =
+                (selectedPlantIndex + PlantCatalog.choices.size - 1) % PlantCatalog.choices.size
+            showSelectedPlant()
+        }
+        nextPlantButton.setOnClickListener {
+            selectedPlantIndex = (selectedPlantIndex + 1) % PlantCatalog.choices.size
+            showSelectedPlant()
+        }
+        showSelectedPlant()
 
         fun setSaving(saving: Boolean) {
             isSaving = saving
             listOf(
                 nameInput, amountInput, descriptionInput,
-                dateButton, saveButton, cancelButton
+                dateButton, saveButton, cancelButton,
+                previousPlantButton, nextPlantButton
             ).forEach { it.isEnabled = !saving }
 
             saveButton.setText(
@@ -106,6 +132,7 @@ class CreatePlantGoalPage(
             }
 
             val description = descriptionInput.text.toString().trim()
+            val plantKey = PlantCatalog.choices[selectedPlantIndex].key
             val deadline = date.atStartOfDay(ZoneId.systemDefault())
                 .toInstant()
                 .toEpochMilli()
@@ -122,7 +149,7 @@ class CreatePlantGoalPage(
                         goalAmount = cents,
                         neededDate = deadline,
                         description = description,
-                        icon = "plant_default"
+                        icon = plantKey
                     )
 
                     Toast.makeText(
@@ -131,7 +158,7 @@ class CreatePlantGoalPage(
                         Toast.LENGTH_SHORT
                     ).show()
 
-                    onNavigate("home")
+                    onNavigate("garden")
                 } catch (e: CancellationException) {
                     throw e
                 } catch (e: Exception) {
