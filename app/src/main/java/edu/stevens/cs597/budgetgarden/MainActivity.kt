@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { view, insets ->
@@ -43,6 +44,7 @@ class MainActivity : AppCompatActivity() {
         })
         showPage(savedInstanceState?.getString("page") ?: "home")
     }
+
 
     private fun showPage(page: String) {
         pageScope?.cancel()
