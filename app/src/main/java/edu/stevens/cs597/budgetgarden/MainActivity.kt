@@ -1,22 +1,30 @@
 package edu.stevens.cs597.budgetgarden
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.TextView
-import android.widget.Button
+//import android.widget.Button
 import android.widget.FrameLayout
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
     private var currentPage = "home"
+    private val gardenApp by lazy {
+        application as GardenBudgetApp
+    }
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { view, insets ->
@@ -33,7 +41,39 @@ class MainActivity : AppCompatActivity() {
             }
         })
         showPage(savedInstanceState?.getString("page") ?: "home")
+
+        //update UI number from database
+        val overallFundsText = findViewById<TextView>(R.id.overall_funds_text)
+        val leftoverFundsText = findViewById<TextView>(R.id.leftover_funds_text)
+        lifecycleScope.launch {
+
+            // Wait for the initial wallet setup
+            gardenApp.awaitDatabaseReady()
+            val asNow = System.currentTimeMillis()
+            // Query the total money
+            val totalMoney = gardenApp.dao.totalMoneyAt(asNow)
+            overallFundsText.text = String.format(
+                java.util.Locale.US,
+                "$%.2f",
+                totalMoney / 100.0
+            )
+            val budgets = gardenApp.dao.getBudgets()
+            val wallets = budgets.filter {
+                it.type == "WALLET" && !it.isArchived
+            }
+            val walletBalance = wallets.sumOf {
+                gardenApp.dao.balanceAt(it.id, asNow)
+            }
+            leftoverFundsText.text = String.format(
+                java.util.Locale.US,
+                "$%.2f",
+                walletBalance / 100.0
+            )
+
+        }
+
     }
+
 
     private fun showPage(page: String) {
         currentPage = page
