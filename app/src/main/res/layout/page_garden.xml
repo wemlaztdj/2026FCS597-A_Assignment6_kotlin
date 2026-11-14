@@ -1,19 +1,51 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="match_parent" android:fillViewport="true">
-  <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="24dp" android:gravity="center_horizontal">
-    <TextView style="@style/GardenTitle" android:text="@string/full_garden" />
-    <LinearLayout android:id="@+id/garden_container" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
-      <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:baselineAligned="false" android:layout_marginTop="12dp">
-        <ImageView android:layout_width="0dp" android:layout_height="140dp" android:layout_weight="1" android:padding="4dp" android:scaleType="fitCenter" android:src="@drawable/yellow_flower" android:contentDescription="@string/yellow_flower_description" />
-        <ImageView android:layout_width="0dp" android:layout_height="140dp" android:layout_weight="1" android:padding="4dp" android:scaleType="fitCenter" android:src="@drawable/pink_flower" android:contentDescription="@string/pink_flower_description" />
-        <ImageView android:layout_width="0dp" android:layout_height="140dp" android:layout_weight="1" android:padding="4dp" android:scaleType="fitCenter" android:src="@drawable/orange_flower" android:contentDescription="@string/orange_flower_description" />
-      </LinearLayout>
-      <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:baselineAligned="false" android:layout_marginTop="12dp">
-        <ImageView android:layout_width="0dp" android:layout_height="140dp" android:layout_weight="1" android:padding="4dp" android:scaleType="fitCenter" android:src="@drawable/red_flower" android:contentDescription="@string/red_flower_description" />
-        <ImageView android:layout_width="0dp" android:layout_height="140dp" android:layout_weight="1" android:padding="4dp" android:scaleType="fitCenter" android:src="@drawable/budding_red_flower" android:contentDescription="@string/budding_red_flower_description" />
-        <ImageView android:layout_width="0dp" android:layout_height="140dp" android:layout_weight="1" android:padding="4dp" android:scaleType="fitCenter" android:src="@drawable/yellow_flower" android:contentDescription="@string/yellow_flower_description" />
-      </LinearLayout>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/garden_goal_background"
+    android:fillViewport="true"
+    android:theme="@style/ThemeOverlay.Budgetgarden.Goal">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="24dp">
+
+        <TextView
+            style="@style/GardenTitle"
+            android:accessibilityHeading="true"
+            android:text="@string/your_garden" />
+
+        <TextView
+            style="@style/GardenGoalSubtitle"
+            android:text="@string/garden_description" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/garden_create_goal_button"
+            style="@style/GardenGoalButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/create_savings_goal" />
+
+        <TextView
+            android:id="@+id/garden_status_text"
+            style="@style/GardenBody"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/garden_goal_card_background"
+            android:padding="20dp"
+            android:textColor="@color/garden_goal_body"
+            android:textSize="16sp"
+            android:text="@string/garden_loading"
+            android:accessibilityLiveRegion="polite" />
+
+        <LinearLayout
+            android:id="@+id/garden_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical" />
     </LinearLayout>
-    <TextView style="@style/GardenBody" android:text="@string/garden_description" android:layout_marginTop="24dp" />
-  </LinearLayout>
 </ScrollView>

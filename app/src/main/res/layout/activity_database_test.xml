@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="#F5FAF6">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="🌱 Garden Budget — Database Test"
+            android:textColor="#204D38"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Amounts shown in dollars; stored as integer cents. Negative wallets are allowed."
+            android:textColor="#52645A" />
+
+        <Button
+            android:id="@+id/refreshButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Refresh Balances &amp; History" />
+
+        <TextView
+            android:id="@+id/summaryText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="#E3F2E7"
+            android:padding="12dp"
+            android:text="Loading..."
+            android:textColor="#204D38"
+            android:textSize="17sp" />
+
+        <TextView style="@style/TestSectionTitle" android:text="1. Create a Wallet or Plant" />
+
+        <EditText
+            android:id="@+id/nameInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Budget name (e.g. Food)"
+            android:inputType="textCapSentences" />
+
+        <Spinner
+            android:id="@+id/typeSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="48dp" />
+
+        <Spinner
+            android:id="@+id/frequencySpinner"
+            android:layout_width="match_parent"
+            android:layout_height="48dp" />
+
+        <EditText
+            android:id="@+id/goalInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Goal amount in dollars (e.g. 500.00)"
+            android:inputType="numberDecimal" />
+
+        <EditText
+            android:id="@+id/neededDateInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Needed date YYYY-MM-DD (optional)"
+            android:inputType="date" />
+
+        <EditText
+            android:id="@+id/descriptionInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Description (optional)"
+            android:inputType="textCapSentences" />
+
+        <EditText
+            android:id="@+id/iconInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Icon key (optional, e.g. plant_tomato)"
+            android:inputType="text" />
+
+        <Button
+            android:id="@+id/createBudgetButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Create Budget" />
+
+        <TextView style="@style/TestSectionTitle" android:text="2. Add Income, Transfer, or Spend" />
+
+        <TextView style="@style/TestFieldLabel" android:text="From" />
+        <Spinner
+            android:id="@+id/fromSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="48dp" />
+
+        <TextView style="@style/TestFieldLabel" android:text="To" />
+        <Spinner
+            android:id="@+id/toSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="48dp" />
+
+        <EditText
+            android:id="@+id/amountInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Transaction amount in dollars (e.g. 100.00)"
+            android:inputType="numberDecimal" />
+
+        <EditText
+            android:id="@+id/postDateInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Post date YYYY-MM-DD"
+            android:inputType="date" />
+
+        <EditText
+            android:id="@+id/memoInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Memo (optional)"
+            android:inputType="textCapSentences" />
+
+        <Button
+            android:id="@+id/addTransactionButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Save Transaction" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Outside → Wallet = income. Wallet → Plant = allocate. Plant → Outside = expense. Plant → Wallet = return funds. Choose a future date to schedule."
+            android:textColor="#52645A" />
+
+        <TextView style="@style/TestSectionTitle" android:text="3. Archive a Plant" />
+
+        <TextView style="@style/TestFieldLabel" android:text="Plant to archive" />
+        <Spinner
+            android:id="@+id/archiveBudgetSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="48dp" />
+
+        <TextView style="@style/TestFieldLabel" android:text="Receive remaining money in" />
+        <Spinner
+            android:id="@+id/archiveWalletSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="48dp" />
+
+        <Button
+            android:id="@+id/archiveButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Return Remaining Balance &amp; Archive" />
+
+        <TextView style="@style/TestSectionTitle" android:text="4. Delete a Transaction" />
+
+        <EditText
+            android:id="@+id/deleteIdInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Transaction ID"
+            android:inputType="number" />
+
+        <Button
+            android:id="@+id/deleteButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Delete Transaction by ID" />
+
+        <TextView style="@style/TestSectionTitle" android:text="5. Current Budgets" />
+        <TextView
+            android:id="@+id/budgetsText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:padding="12dp"
+            android:textColor="#20382A"
+            android:textSize="15sp" />
+
+        <TextView style="@style/TestSectionTitle" android:text="6. Transaction History (latest 100)" />
+        <TextView
+            android:id="@+id/transactionsText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:padding="12dp"
+            android:textColor="#20382A"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/openCreateGoalButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Create a savings goal" />
+
+    </LinearLayout>
+</ScrollView>

@@ -1,19 +1,21 @@
 package edu.stevens.cs597.budgetgarden
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.TextView
-//import android.widget.Button
 import android.widget.FrameLayout
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancel
 
 class MainActivity : AppCompatActivity() {
     private var currentPage = "home"
@@ -21,7 +23,9 @@ class MainActivity : AppCompatActivity() {
         application as GardenBudgetApp
     }
 
-    @SuppressLint("MissingInflatedId")
+    private var pageScope: CoroutineScope? = null
+    private val createGoalViewModel by viewModels<CreatePlantGoalViewModel>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -40,55 +44,45 @@ class MainActivity : AppCompatActivity() {
                 if (currentPage != "home") showPage("home") else finish()
             }
         })
-        showPage(savedInstanceState?.getString("page") ?: "home")
-
-        //update UI number from database
-        val overallFundsText = findViewById<TextView>(R.id.overall_funds_text)
-        val leftoverFundsText = findViewById<TextView>(R.id.leftover_funds_text)
-        lifecycleScope.launch {
-
-            // Wait for the initial wallet setup
-            gardenApp.awaitDatabaseReady()
-            val asNow = System.currentTimeMillis()
-            // Query the total money
-            val totalMoney = gardenApp.dao.totalMoneyAt(asNow)
-            overallFundsText.text = String.format(
-                java.util.Locale.US,
-                "$%.2f",
-                totalMoney / 100.0
-            )
-            val budgets = gardenApp.dao.getBudgets()
-            val wallets = budgets.filter {
-                it.type == "WALLET" && !it.isArchived
-            }
-            val walletBalance = wallets.sumOf {
-                gardenApp.dao.balanceAt(it.id, asNow)
-            }
-            leftoverFundsText.text = String.format(
-                java.util.Locale.US,
-                "$%.2f",
-                walletBalance / 100.0
-            )
-
-        }
-
+        currentPage = savedInstanceState?.getString("page") ?: "home"
+        showPage(currentPage)
     }
 
 
     private fun showPage(page: String) {
+        if (currentPage == "create_goal" && page != "create_goal") {
+            if (createGoalViewModel.isSaving) return
+            createGoalViewModel.resetDraft()
+        }
+        pageScope?.cancel()
+        val scope = CoroutineScope(
+            lifecycleScope.coroutineContext +
+                SupervisorJob(lifecycleScope.coroutineContext[Job])
+        )
+        pageScope = scope
         currentPage = page
         val layout = when (page) {
             "withdraw" -> R.layout.page_take_out
             "garden" -> R.layout.page_garden
             "details" -> R.layout.page_details
             "water" -> R.layout.page_water_delivery
+            "create_goal" -> R.layout.page_create_goal
             else -> R.layout.page_home
         }
         val container = findViewById<FrameLayout>(R.id.page_container)
         container.removeAllViews()
-        LayoutInflater.from(this).inflate(layout, container, true)
-        if (page == "home") HomePage(container).bind(::showPage)
-        // Load fresh database values for the other pages here after integration.
+        val pageView = LayoutInflater.from(this).inflate(layout, container, false)
+        container.addView(pageView)
+        when (page) {
+            "home" -> HomePage(pageView, gardenApp, scope).bind(::showPage)
+            "garden" -> GardenPage(pageView, gardenApp, scope).bind(::showPage)
+            "create_goal" -> CreatePlantGoalPage(
+                pageView,
+                createGoalViewModel,
+                scope,
+                lifecycle
+            ).bind(::showPage)
+        }
         val selectedId = when (page) {
             "withdraw" -> R.id.take_out_button
             "garden" -> R.id.garden_button

@@ -2,4 +2,17 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="garden_goal_background">#F6F8F1</color>
+    <color name="garden_goal_surface">#FFFFFF</color>
+    <color name="garden_goal_soft_surface">#EFF5E9</color>
+    <color name="garden_goal_heading">#24452C</color>
+    <color name="garden_goal_body">#354739</color>
+    <color name="garden_goal_hint">#64735F</color>
+    <color name="garden_goal_accent">#54784C</color>
+    <color name="garden_goal_outline">#B7C8AC</color>
+    <color name="garden_goal_selected">#C5DDB8</color>
+    <color name="garden_goal_pressed">#B5D3A4</color>
+    <color name="garden_goal_disabled">#E3E8DF</color>
+    <color name="garden_goal_disabled_text">#70806A</color>
+    <color name="garden_goal_ripple">#2954784C</color>
 </resources>
