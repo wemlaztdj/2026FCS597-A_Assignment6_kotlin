@@ -1,14 +1,15 @@
 package edu.stevens.cs597.budgetgarden
 
 import android.app.DatePickerDialog
-import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import kotlinx.coroutines.CancellationException
+import androidx.core.widget.doAfterTextChanged
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.repeatOnLifecycle
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import java.math.BigDecimal
@@ -17,8 +18,9 @@ import java.time.ZoneId
 
 class CreatePlantGoalPage(
     private val root: View,
-    private val gardenApp: GardenBudgetApp,
-    private val scope: CoroutineScope
+    private val viewModel: CreatePlantGoalViewModel,
+    private val scope: CoroutineScope,
+    private val lifecycle: Lifecycle
 ) {
     fun bind(onNavigate: (String) -> Unit) {
         val nameInput = root.findViewById<EditText>(R.id.goal_name_input)
@@ -33,12 +35,21 @@ class CreatePlantGoalPage(
         val plantPreview = root.findViewById<ImageView>(R.id.plant_preview)
         val plantName = root.findViewById<TextView>(R.id.plant_name_text)
 
-        var selectedDate: LocalDate? = null
-        var selectedPlantIndex = 0
-        var isSaving = false
+        nameInput.setText(viewModel.name)
+        amountInput.setText(viewModel.amount)
+        descriptionInput.setText(viewModel.description)
+        nameInput.doAfterTextChanged { viewModel.name = it.toString() }
+        amountInput.doAfterTextChanged { viewModel.amount = it.toString() }
+        descriptionInput.doAfterTextChanged { viewModel.description = it.toString() }
+        viewModel.date?.let { dateButton.text = it.toString() }
+
+        var selectedPlantIndex = PlantCatalog.choices.indexOf(
+            PlantCatalog.fromKey(viewModel.plantKey)
+        )
 
         fun showSelectedPlant() {
             val plant = PlantCatalog.choices[selectedPlantIndex]
+            viewModel.plantKey = plant.key
             plantPreview.setImageResource(plant.drawableRes)
             plantPreview.contentDescription = root.context.getString(plant.labelRes)
             plantName.setText(plant.labelRes)
@@ -56,7 +67,6 @@ class CreatePlantGoalPage(
         showSelectedPlant()
 
         fun setSaving(saving: Boolean) {
-            isSaving = saving
             listOf(
                 nameInput, amountInput, descriptionInput,
                 dateButton, saveButton, cancelButton,
@@ -67,15 +77,39 @@ class CreatePlantGoalPage(
                 if (saving) R.string.saving_goal else R.string.save_goal
             )
         }
+        setSaving(viewModel.isSaving)
+
+        scope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.saveState.collect { state ->
+                    setSaving(state == GoalSaveState.SAVING)
+                    when (state) {
+                        GoalSaveState.SAVED -> {
+                            Toast.makeText(
+                                root.context, R.string.goal_created, Toast.LENGTH_SHORT
+                            ).show()
+                            onNavigate("garden")
+                        }
+                        GoalSaveState.FAILED -> {
+                            Toast.makeText(
+                                root.context, R.string.goal_save_failed, Toast.LENGTH_LONG
+                            ).show()
+                            viewModel.acknowledgeFailure()
+                        }
+                        else -> Unit
+                    }
+                }
+            }
+        }
 
         dateButton.setOnClickListener {
-            val initialDate = selectedDate ?: LocalDate.now()
+            val initialDate = viewModel.date ?: LocalDate.now()
 
             DatePickerDialog(
                 root.context,
                 { _, year, month, day ->
                     val date = LocalDate.of(year, month + 1, day)
-                    selectedDate = date
+                    viewModel.date = date
                     dateButton.text = date.toString()
                     dateButton.error = null
                 },
@@ -95,7 +129,7 @@ class CreatePlantGoalPage(
         }
 
         saveButton.setOnClickListener {
-            if (isSaving) return@setOnClickListener
+            if (viewModel.isSaving) return@setOnClickListener
 
             nameInput.error = null
             amountInput.error = null
@@ -103,7 +137,7 @@ class CreatePlantGoalPage(
 
             val name = nameInput.text.toString().trim()
             val cents = parseCents(amountInput.text.toString().trim())
-            val date = selectedDate
+            val date = viewModel.date
 
             if (name.isBlank()) {
                 nameInput.error =
@@ -133,46 +167,7 @@ class CreatePlantGoalPage(
 
             val description = descriptionInput.text.toString().trim()
             val plantKey = PlantCatalog.choices[selectedPlantIndex].key
-            val deadline = date.atStartOfDay(ZoneId.systemDefault())
-                .toInstant()
-                .toEpochMilli()
-
-            setSaving(true)
-
-            scope.launch {
-                try {
-                    gardenApp.awaitDatabaseReady()
-                    gardenApp.repository.createBudget(
-                        name = name,
-                        type = "SAVINGS",
-                        frequency = "ONE_TIME",
-                        goalAmount = cents,
-                        neededDate = deadline,
-                        description = description,
-                        icon = plantKey
-                    )
-
-                    Toast.makeText(
-                        root.context,
-                        R.string.goal_created,
-                        Toast.LENGTH_SHORT
-                    ).show()
-
-                    onNavigate("garden")
-                } catch (e: CancellationException) {
-                    throw e
-                } catch (e: Exception) {
-                    Log.e("CreatePlantGoal", "Could not save goal", e)
-
-                    Toast.makeText(
-                        root.context,
-                        R.string.goal_save_failed,
-                        Toast.LENGTH_LONG
-                    ).show()
-                } finally {
-                    setSaving(false)
-                }
-            }
+            viewModel.saveGoal(name, cents, date, description, plantKey)
         }
     }
 

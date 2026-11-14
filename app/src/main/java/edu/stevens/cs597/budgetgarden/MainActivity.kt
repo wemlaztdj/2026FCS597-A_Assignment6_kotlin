@@ -7,6 +7,7 @@ import android.widget.TextView
 import android.widget.FrameLayout
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -23,6 +24,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private var pageScope: CoroutineScope? = null
+    private val createGoalViewModel by viewModels<CreatePlantGoalViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,11 +44,16 @@ class MainActivity : AppCompatActivity() {
                 if (currentPage != "home") showPage("home") else finish()
             }
         })
-        showPage(savedInstanceState?.getString("page") ?: "home")
+        currentPage = savedInstanceState?.getString("page") ?: "home"
+        showPage(currentPage)
     }
 
 
     private fun showPage(page: String) {
+        if (currentPage == "create_goal" && page != "create_goal") {
+            if (createGoalViewModel.isSaving) return
+            createGoalViewModel.resetDraft()
+        }
         pageScope?.cancel()
         val scope = CoroutineScope(
             lifecycleScope.coroutineContext +
@@ -71,8 +78,9 @@ class MainActivity : AppCompatActivity() {
             "garden" -> GardenPage(pageView, gardenApp, scope).bind(::showPage)
             "create_goal" -> CreatePlantGoalPage(
                 pageView,
-                gardenApp,
-                scope
+                createGoalViewModel,
+                scope,
+                lifecycle
             ).bind(::showPage)
         }
         val selectedId = when (page) {
