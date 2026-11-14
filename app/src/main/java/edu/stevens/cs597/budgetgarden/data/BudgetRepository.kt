@@ -65,13 +65,14 @@ class BudgetRepository(private val db: AppDatabase) {
         require(fromId != null || to?.type == "WALLET") {
             "External income must enter a wallet"
         }
-        dao.insertTransaction(
+        val transactionId = dao.insertTransaction(
             BudgetTransaction(
                 fromBudgetId = fromId, toBudgetId = toId,
                 amount = amount, postDate = postDate, memo = memo.trim()
             )
         )
         verifyBalances()
+        transactionId
     }
 
     suspend fun deleteTransaction(id: Long) = db.withTransaction {

@@ -1,5 +1,6 @@
 package edu.stevens.cs597.budgetgarden
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,12 +12,19 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
     private var currentPage = "home"
+    private val gardenApp by lazy {
+        application as GardenBudgetApp
+    }
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { view, insets ->
@@ -33,7 +41,28 @@ class MainActivity : AppCompatActivity() {
             }
         })
         showPage(savedInstanceState?.getString("page") ?: "home")
+
+
+        val overallFundsText = findViewById<TextView>(R.id.overall_funds_text)
+        lifecycleScope.launch {
+
+            // Wait for the initial wallet setup
+            gardenApp.awaitDatabaseReady()
+
+            // Query the total money
+            val totalMoney = gardenApp.dao.totalMoneyAt(
+                System.currentTimeMillis()
+            )
+            overallFundsText.text = String.format(
+                java.util.Locale.US,
+                "$%.2f",
+                totalMoney / 100.0
+            )
+
+        }
+
     }
+
 
     private fun showPage(page: String) {
         currentPage = page
